@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 // Helpers
-import axios from 'axios';
+import axios from "axios";
 
 // endpoints
-import Endpoints from '../constants/APIs';
+import Endpoints from "../constants/APIs";
 
-
-const useQuestions = (query = '') => {
+const useQuestions = (query = "") => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -21,12 +20,12 @@ const useQuestions = (query = '') => {
         setError(false);
 
         const { data: questions } = await axios.get(
-          Endpoints.getQuestions(`title_like=${query}`),
+          Endpoints.getQuestions(`title_like=${query}`)
           // { cancelToken: axiosCancelToken.token }
         );
+
         setIsLoading(false);
         setData(questions);
-
       } catch (e) {
         setError(true);
         setIsLoading(false);
@@ -36,18 +35,18 @@ const useQuestions = (query = '') => {
     getData();
 
     return () => {
-      axiosCancelToken.cancel('Request Cancel');
-    }
+      axiosCancelToken.cancel("Request Cancel");
+    };
   }, [query]);
 
   return {
     data: {
       questions: data,
-      total: data.length
+      total: data.length,
     },
     isLoading,
-    error
-  }
+    error,
+  };
 };
 
 export default useQuestions;

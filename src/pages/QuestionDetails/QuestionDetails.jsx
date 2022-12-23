@@ -1,20 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { RenderWhen } from "../../components";
+import parse from "html-react-parser";
 
 import useQuestion from "./hooks/useQuestion";
-
 
 const QuestionDetails = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { data, isLoading, error, votes, handleUpvote, handleDownvote } = useQuestion(id);
+  const { data, isLoading, error, votes, handleUpvote, handleDownvote } =
+    useQuestion(id);
 
   return (
     <div className="py-8">
-
       <div className="mb-4">
         <button className="py-2 text-sm" onClick={() => navigate(-1)}>
-          {'< Back'}
+          {"< Back"}
         </button>
       </div>
 
@@ -28,16 +28,19 @@ const QuestionDetails = () => {
 
       <RenderWhen condition={data && Object.keys(data).length}>
         <h1 className="text-2xl font-bold mb-8 border-b border-gray-300 pb-4">
-
           {data?.title}
         </h1>
         <div className="flex justify-center">
           <div className="px-10 mr-4">
-            <button className="p-4 text-xl" onClick={handleUpvote}>⬆️</button>
+            <button className="p-4 text-xl" onClick={handleUpvote}>
+              ⬆️
+            </button>
 
             <div className="text-center">{votes}</div>
 
-            <button className="p-4 text-xl" onClick={handleDownvote}>⬇️</button>
+            <button className="p-4 text-xl" onClick={handleDownvote}>
+              ⬇️
+            </button>
           </div>
           <div>
             <div className="pb-2 border-b border-gray-300 text-xs mb-4">
@@ -47,13 +50,15 @@ const QuestionDetails = () => {
               <span className="text-gray-500">By </span>
               <span className="">{data.author}</span>
             </div>
-            <p>{data.description}</p>
+            {parse(`
+                <h1>Item 1</h1>
+              `)}
+            {/* ){parse(`${data.description}`)} */}
           </div>
         </div>
       </RenderWhen>
-
     </div>
-  )
+  );
 };
 
 export default QuestionDetails;

@@ -1,10 +1,5 @@
-
 const RenderWhen = ({ children, condition }) => {
-  return (
-    <>
-      {condition ? children : null}
-    </>
-  )
+  return <>{condition ? children : null}</>;
 };
 
 export default RenderWhen;

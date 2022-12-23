@@ -1,4 +1,3 @@
-
 // Hooks
 import Skeleton from "react-loading-skeleton";
 import { useSearchParams } from "react-router-dom";
@@ -7,25 +6,33 @@ import { useSearchParams } from "react-router-dom";
 import { Error, RenderWhen } from "../../components";
 import QuestionItem from "../../components/QuestionItem/QuestionItem";
 import useQuestions from "../../hooks/useQuestions";
+import MultiButton from "./components/MultiButton";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
-  const { data, isLoading, error } = useQuestions(searchParams.get('query'));
+  const { data, isLoading, error } = useQuestions(searchParams.get("query"));
 
   return (
     <div className="py-8">
       <RenderWhen condition={isLoading}>
-        <Skeleton count={3} className='h-36 mb-6' />
+        <Skeleton count={3} className="h-36 mb-6" />
       </RenderWhen>
 
       <RenderWhen condition={error}>
         <Error />
       </RenderWhen>
 
+      <RenderWhen condition={data?.questions?.length == 0}>
+        <div className="w-full bg-red-100 flex justify-center">
+          <span>No Data</span>
+        </div>
+      </RenderWhen>
+
       <RenderWhen condition={!isLoading && data && data?.questions.length}>
-        <h1 className='mb-8 text-lg font-bold'>Search Results</h1>
-        {
-          data.questions.map(({ id, title, views, rate, description, author, answers, tags }) => (
+        <h1 className="mb-8 text-lg font-bold">Search Results</h1>
+        <MultiButton />
+        {data.questions.map(
+          ({ id, title, views, rate, description, author, answers, tags }) => (
             <QuestionItem
               key={id}
               id={id}
@@ -38,11 +45,11 @@ const Search = () => {
               answers={answers}
               tags={tags}
             />
-          ))
-        }
+          )
+        )}
       </RenderWhen>
     </div>
-  )
+  );
 };
 
 export default Search;

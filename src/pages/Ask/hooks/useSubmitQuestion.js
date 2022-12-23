@@ -1,21 +1,20 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import { useState } from "react";
-import * as Yup from 'yup';
+import * as Yup from "yup";
+import { toast } from "react-toastify";
 
-
-import Endpoints from '../../../constants/APIs';
-
+import Endpoints from "../../../constants/APIs";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string()
-    .min(10, 'Too Short!')
-    .max(150, 'Too Long!')
-    .required('Please fill this input'),
+    .min(10, "Too Short!")
+    .max(150, "Too Long!")
+    .required("Please fill this input"),
 
   description: Yup.string()
-    .min(100, 'Too Short!')
-    .required('Please fill this input'),
+    .min(100, "Too Short!")
+    .required("Please fill this input"),
 });
 
 const useSubmitQuestion = ({ afterSubmission }) => {
@@ -24,8 +23,8 @@ const useSubmitQuestion = ({ afterSubmission }) => {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      description: ''
+      title: "",
+      description: "",
     },
 
     onSubmit: async (values) => {
@@ -34,26 +33,28 @@ const useSubmitQuestion = ({ afterSubmission }) => {
         await axios.post(Endpoints.postQuestion(), {
           ...values,
           created_at: new Date(),
-          author: 'Hesan',
+          author: "Hesan",
           rate: { up: 0, down: 0, total: 0 },
           answers: {
             total: 0,
-            quotes: []
+            quotes: [],
           },
           views: 0,
           tags: [],
-          comments: []
+          comments: [],
         });
+        toast("SUCCESS");
         setIsLoading(false);
-        if (afterSubmission && typeof afterSubmission === 'function') afterSubmission();
+        if (afterSubmission && typeof afterSubmission === "function")
+          afterSubmission();
       } catch (e) {
         setIsLoading(false);
         setError(false);
       }
     },
 
-    validationSchema
-  })
+    validationSchema,
+  });
 
   return {
     isLoading,
@@ -61,8 +62,8 @@ const useSubmitQuestion = ({ afterSubmission }) => {
     values: formik.values,
     errors: formik.errors,
     onChange: formik.handleChange,
-    onSubmit: formik.handleSubmit
-  }
+    onSubmit: formik.handleSubmit,
+  };
 };
 
 export default useSubmitQuestion;
