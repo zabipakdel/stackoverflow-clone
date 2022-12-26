@@ -6,7 +6,6 @@ const Endpoints = {
   getQuestionById: (id) => `${BASE_API}/questions/${id}`,
   getProfile: (id) => `${BASE_API}/user/${id}`,
   postProfile: () => `${BASE_API}/user`,
-  postAnswer: () => `${BASE_API}/questions/answers`,
 };
 
 export default Endpoints;

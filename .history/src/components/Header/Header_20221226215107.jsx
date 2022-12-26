@@ -37,7 +37,7 @@ const Header = () => {
       setSearchParams({ query: debouncedSearchTerm });
     }
   }, [debouncedSearchTerm, location.pathname, navigate, setSearchParams]);
-  console.log({ data });
+
   return (
     <div className="flex justify-between items-center p-4 bg-gray-100 border-b mb-2">
       <div className="flex flex-1">
@@ -75,7 +75,7 @@ const Header = () => {
             className="rounded-full mr-2 w-8 h-8 border border-gray-300"
           />
           <span className="text-sm">
-            {data?.profile?.name} {data?.profile?.family}
+            {data?.name} {data?.family}
           </span>
         </div>
       </Link>

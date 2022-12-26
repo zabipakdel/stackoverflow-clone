@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
     .required("Please fill this input"),
 });
 
-const useQuestion = ({ id, afterSubmission }) => {
+const useQuestion = (id) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -63,7 +63,7 @@ const useQuestion = ({ id, afterSubmission }) => {
     onSubmit: async (values) => {
       try {
         setIsLoading(true);
-        await axios.post(Endpoints.postAnswer(), {
+        await axios.post(Endpoints.postQuestion(), {
           ...values,
           created_at: new Date(),
           author: "Hesan",
@@ -142,10 +142,6 @@ const useQuestion = ({ id, afterSubmission }) => {
     votes,
     handleUpvote,
     handleDownvote,
-    values: formik.values,
-    errors: formik.errors,
-    onChange: formik.handleChange,
-    onSubmit: formik.handleSubmit,
   };
 };
 

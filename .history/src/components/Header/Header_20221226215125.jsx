@@ -75,7 +75,7 @@ const Header = () => {
             className="rounded-full mr-2 w-8 h-8 border border-gray-300"
           />
           <span className="text-sm">
-            {data?.profile?.name} {data?.profile?.family}
+            {data?.name} {data?.family}
           </span>
         </div>
       </Link>

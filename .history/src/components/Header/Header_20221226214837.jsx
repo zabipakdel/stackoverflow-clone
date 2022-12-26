@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
+
 // Components
-import { Error, RenderWhen } from "../../components";
-import Skeleton from "react-loading-skeleton";
 import {
   Link,
   useLocation,
@@ -18,6 +17,7 @@ import useUser from "../../hooks/useUser";
 
 const Header = () => {
   const { data, isLoading, error } = useUser({ id: 1 });
+  console.log({ data });
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,7 +37,7 @@ const Header = () => {
       setSearchParams({ query: debouncedSearchTerm });
     }
   }, [debouncedSearchTerm, location.pathname, navigate, setSearchParams]);
-  console.log({ data });
+
   return (
     <div className="flex justify-between items-center p-4 bg-gray-100 border-b mb-2">
       <div className="flex flex-1">
@@ -60,13 +60,7 @@ const Header = () => {
           />
         </div>
       </div>
-      <RenderWhen condition={isLoading}>
-        <Skeleton count={3} className="h-36 mb-6" />
-      </RenderWhen>
 
-      <RenderWhen condition={error}>
-        <Error />
-      </RenderWhen>
       <Link to="/profile">
         <div className="flex items-center justify-end cursor-pointer">
           <img
@@ -74,9 +68,7 @@ const Header = () => {
             alt="Hesan Aminiloo"
             className="rounded-full mr-2 w-8 h-8 border border-gray-300"
           />
-          <span className="text-sm">
-            {data?.profile?.name} {data?.profile?.family}
-          </span>
+          <span className="text-sm">Hesan Aminiloo</span>
         </div>
       </Link>
     </div>

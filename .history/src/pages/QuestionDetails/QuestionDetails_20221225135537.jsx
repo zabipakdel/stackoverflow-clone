@@ -5,7 +5,6 @@ import { useId } from "react";
 import clsx from "clsx";
 
 import useQuestion from "./hooks/useQuestion";
-import Answers from "./components/Answers";
 
 const QuestionTitle = ({ value, onChange, disabled, errorMsg, name }) => {
   const id = useId();
@@ -122,8 +121,7 @@ const QuestionDetails = () => {
               <span className="">{data.author}</span>
             </div>
             {parse(`${data.description}`)}
-            <Answers answers={data?.answers} />
-            <div className="border-b border-gray-300 mt-3" />
+
             <form onSubmit={onSubmit} className="flex flex-col">
               <QuestionTitle
                 value={values.title}

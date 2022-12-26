@@ -64,7 +64,7 @@
           }
         ]
       },
-      "views": 18,
+      "views": 35,
       "tags": [
         "tailwind",
         "css",
@@ -259,14 +259,14 @@
       "author": "Hesan",
       "rate": {
         "up": 0,
-        "down": 0,
-        "total": 0
+        "down": 1,
+        "total": 1
       },
       "answers": {
         "total": 0,
         "quotes": []
       },
-      "views": 13,
+      "views": 14,
       "tags": [],
       "comments": [],
       "id": 9
@@ -323,7 +323,7 @@
         "total": 0,
         "quotes": []
       },
-      "views": 0,
+      "views": 1,
       "tags": [],
       "comments": [],
       "id": 12

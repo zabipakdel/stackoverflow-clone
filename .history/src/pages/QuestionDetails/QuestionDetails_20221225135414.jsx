@@ -5,7 +5,6 @@ import { useId } from "react";
 import clsx from "clsx";
 
 import useQuestion from "./hooks/useQuestion";
-import Answers from "./components/Answers";
 
 const QuestionTitle = ({ value, onChange, disabled, errorMsg, name }) => {
   const id = useId();
@@ -32,31 +31,6 @@ const QuestionTitle = ({ value, onChange, disabled, errorMsg, name }) => {
         <div className="py-1 text-xs text-red-500">{errorMsg}</div>
       </RenderWhen>
     </div>
-  );
-};
-
-const Description = ({ value, onChange, disabled, errorMsg, name }) => {
-  const id = useId();
-
-  return (
-    <>
-      <label htmlFor={id} className="font-bold text-sm mb-2">
-        Description
-      </label>
-      <textarea
-        className={clsx("min-h-[250px] border rounded p-2", {
-          "border-red-400": errorMsg,
-        })}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-        name={name}
-        placeholder="I want my computer to answer whatever I want to know"
-      ></textarea>
-      <RenderWhen condition={errorMsg}>
-        <div className="py-1 text-xs text-red-500">{errorMsg}</div>
-      </RenderWhen>
-    </>
   );
 };
 
@@ -122,8 +96,7 @@ const QuestionDetails = () => {
               <span className="">{data.author}</span>
             </div>
             {parse(`${data.description}`)}
-            <Answers answers={data?.answers} />
-            <div className="border-b border-gray-300 mt-3" />
+
             <form onSubmit={onSubmit} className="flex flex-col">
               <QuestionTitle
                 value={values.title}
@@ -133,30 +106,20 @@ const QuestionDetails = () => {
                 name="title"
               />
 
-              <Description
-                value={values.description}
-                onChange={onChange}
-                disabled={isLoading}
-                errorMsg={errors.description}
-                name="description"
-              />
+              {/* <Description
+  value={values.description}
+  onChange={onChange}
+  disabled={isLoading}
+  errorMsg={errors.description}
+  name="description"
+/> */}
 
-              <div className="py-4 flex justify-end">
-                <div>
-                  <button
-                    className="py-2 px-4 mr-2 text-red-500 rounded"
-                    onClick={() => navigate(-1)}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="py-2 px-4  text-white rounded border bg-blue-500 border-blue-600 hover:bg-blue-600 transition-colors"
-                    type="submit"
-                  >
-                    Submit
-                  </button>
-                </div>
-              </div>
+              {/* <div className='py-4 flex justify-end'>
+  <div>
+    <button className="py-2 px-4 mr-2 text-red-500 rounded" onClick={() => navigate(-1)}>Cancel</button>
+    <button className="py-2 px-4  text-white rounded border bg-blue-500 border-blue-600 hover:bg-blue-600 transition-colors" type="submit">Submit</button>
+  </div>
+</div> */}
             </form>
           </div>
         </div>

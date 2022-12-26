@@ -81,6 +81,8 @@ const QuestionDetails = () => {
     },
   });
 
+  console.log({ data });
+
   return (
     <div className="py-8">
       <div className="mb-4">

@@ -81,6 +81,8 @@ const QuestionDetails = () => {
     },
   });
 
+  console.log({ data });
+
   return (
     <div className="py-8">
       <div className="mb-4">
@@ -122,9 +124,8 @@ const QuestionDetails = () => {
               <span className="">{data.author}</span>
             </div>
             {parse(`${data.description}`)}
-            <Answers answers={data?.answers} />
-            <div className="border-b border-gray-300 mt-3" />
-            <form onSubmit={onSubmit} className="flex flex-col">
+            <Answers />
+            {/* <form onSubmit={onSubmit} className="flex flex-col">
               <QuestionTitle
                 value={values.title}
                 onChange={onChange}
@@ -157,7 +158,7 @@ const QuestionDetails = () => {
                   </button>
                 </div>
               </div>
-            </form>
+            </form> */}
           </div>
         </div>
       </RenderWhen>
