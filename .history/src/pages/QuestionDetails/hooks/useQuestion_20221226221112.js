@@ -61,7 +61,7 @@ const useQuestion = ({ id, afterSubmission }) => {
     },
 
     onSubmit: async (values) => {
-      console.log({ values, data });
+      console.log({ values });
       // try {
       //   setIsLoading(true);
       //   await axios.post(Endpoints.postAnswer(), {

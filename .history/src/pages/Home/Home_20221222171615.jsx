@@ -6,10 +6,9 @@ import Skeleton from "react-loading-skeleton";
 import { Error, RenderWhen } from "../../components";
 import AskQuestion from "./components/AskQuestion";
 import QuestionItem from "../../components/QuestionItem/QuestionItem";
-import Pagination from "../../components/Pagination/Pagination";
 
 const Home = () => {
-  const { data, isLoading, error, page, nextPage, prevPage } = useQuestions();
+  const { data, isLoading, error } = useQuestions();
   return (
     <div className="pb-10">
       <AskQuestion total={data.total} />
@@ -54,7 +53,6 @@ const Home = () => {
           )
         )}
       </RenderWhen>
-      <Pagination page={page} nextPage={nextPage} prevPage={prevPage} />
     </div>
   );
 };

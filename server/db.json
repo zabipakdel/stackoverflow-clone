@@ -7,9 +7,9 @@
       "author": "Hesan",
       "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged",
       "rate": {
-        "up": 11,
+        "up": 12,
         "down": 3,
-        "total": 14
+        "total": 15
       },
       "answers": {
         "total": 3,
@@ -64,7 +64,7 @@
           }
         ]
       },
-      "views": 35,
+      "views": 40,
       "tags": [
         "tailwind",
         "css",
@@ -93,7 +93,7 @@
         "total": 0,
         "quotes": []
       },
-      "views": 10,
+      "views": 11,
       "tags": [
         "javascript",
         "reza"

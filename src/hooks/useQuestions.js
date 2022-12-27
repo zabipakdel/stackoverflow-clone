@@ -10,6 +10,17 @@ const useQuestions = (query = "") => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [page, setPage] = useState(1);
+
+  const nextPage = () => {
+    setPage((old) => (old += 1));
+  };
+
+  const prevPage = () => {
+    if (page - 1 > 0) {
+      setPage((old) => (old -= 1));
+    }
+  };
 
   useEffect(() => {
     const axiosCancelToken = axios.CancelToken.source();
@@ -20,7 +31,7 @@ const useQuestions = (query = "") => {
         setError(false);
 
         const { data: questions } = await axios.get(
-          Endpoints.getQuestions(`title_like=${query}`)
+          Endpoints.getQuestions(`title_like=${query}&_page=${page}`)
           // { cancelToken: axiosCancelToken.token }
         );
 
@@ -37,7 +48,7 @@ const useQuestions = (query = "") => {
     return () => {
       axiosCancelToken.cancel("Request Cancel");
     };
-  }, [query]);
+  }, [query, page]);
 
   return {
     data: {
@@ -46,6 +57,9 @@ const useQuestions = (query = "") => {
     },
     isLoading,
     error,
+    page,
+    nextPage,
+    prevPage,
   };
 };
 
