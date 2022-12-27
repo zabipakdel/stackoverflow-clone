@@ -6,10 +6,12 @@ import Skeleton from "react-loading-skeleton";
 import { Error, RenderWhen } from "../../components";
 import AskQuestion from "./components/AskQuestion";
 import QuestionItem from "../../components/QuestionItem/QuestionItem";
-import Pagination from "../../components/Pagination/Pagination";
+import Pagination from "../../components/Pagination";
+import Sort from "../../components/Sort";
 
 const Home = () => {
-  const { data, isLoading, error, page, nextPage, prevPage } = useQuestions();
+  const { data, isLoading, error, page, nextPage, prevPage, sort, handleSort } =
+    useQuestions();
   return (
     <div className="pb-10">
       <AskQuestion total={data.total} />
@@ -21,9 +23,9 @@ const Home = () => {
       <RenderWhen condition={error}>
         <Error />
       </RenderWhen>
-
+      <Sort sort={sort} handleSort={handleSort} />
       <RenderWhen condition={data && data?.questions.length}>
-        <h1 className="py-8 text-lg font-bold sticky top-0 bg-white">
+        <h1 className="py-8 mt-2 text-lg font-bold sticky top-0 bg-white">
           Top Questions
         </h1>
         {data.questions.map(

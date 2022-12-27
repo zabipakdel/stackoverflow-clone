@@ -11,6 +11,8 @@ const useQuestions = (query = "") => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("views");
+  const [order, setOrder] = useState("asc");
 
   const nextPage = () => {
     setPage((old) => (old += 1));
@@ -22,6 +24,15 @@ const useQuestions = (query = "") => {
     }
   };
 
+  const handleSort = (newSort) => {
+    console.log({ newSort });
+    setSort(newSort);
+  };
+
+  const handleOrder = (newOrder) => {
+    setOrder(newOrder);
+  };
+
   useEffect(() => {
     const axiosCancelToken = axios.CancelToken.source();
 
@@ -31,7 +42,9 @@ const useQuestions = (query = "") => {
         setError(false);
 
         const { data: questions } = await axios.get(
-          Endpoints.getQuestions(`title_like=${query}&_page=${page}`)
+          Endpoints.getQuestions(
+            `title_like=${query}&_page=${page}&_sort=${sort}&_order=${order}`
+          )
           // { cancelToken: axiosCancelToken.token }
         );
 
@@ -48,7 +61,7 @@ const useQuestions = (query = "") => {
     return () => {
       axiosCancelToken.cancel("Request Cancel");
     };
-  }, [query, page]);
+  }, [query, page, sort, order]);
 
   return {
     data: {
@@ -60,6 +73,10 @@ const useQuestions = (query = "") => {
     page,
     nextPage,
     prevPage,
+    sort,
+    handleSort,
+    order,
+    handleOrder,
   };
 };
 
