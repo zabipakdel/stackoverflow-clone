@@ -6,6 +6,7 @@ import clsx from "clsx";
 
 import useQuestion from "./hooks/useQuestion";
 import Answers from "./components/Answers";
+import Tags from "../Ask/components/Tags";
 
 const QuestionTitle = ({ value, onChange, disabled, errorMsg, name }) => {
   const id = useId();
@@ -114,7 +115,8 @@ const QuestionDetails = () => {
             </button>
           </div>
           <div>
-            <div className="pb-2 border-b border-gray-300 text-xs mb-4">
+            <Tags tags={data?.tags} />
+            <div className="pb-2 mt-2 border-b border-gray-300 text-xs mb-4">
               <span className="text-gray-500">Asked: </span>
               <span className=" mr-4">{data.created_at}</span>
 

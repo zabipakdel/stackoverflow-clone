@@ -64,7 +64,7 @@
           }
         ]
       },
-      "views": 40,
+      "views": 45,
       "tags": [
         "tailwind",
         "css",
@@ -171,7 +171,7 @@
         "total": 0,
         "quotes": []
       },
-      "views": 1,
+      "views": 2,
       "tags": [],
       "comments": [],
       "id": 4
@@ -327,6 +327,29 @@
       "tags": [],
       "comments": [],
       "id": 12
+    },
+    {
+      "title": "How Can I be",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+      "tags": [
+        "Tailwind",
+        "CSS",
+        "React.js"
+      ],
+      "created_at": "2022-12-27T17:44:58.326Z",
+      "author": "Hesan",
+      "rate": {
+        "up": 0,
+        "down": 0,
+        "total": 0
+      },
+      "answers": {
+        "total": 0,
+        "quotes": []
+      },
+      "views": 1,
+      "comments": [],
+      "id": 13
     }
   ],
   "user": {

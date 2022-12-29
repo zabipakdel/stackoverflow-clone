@@ -20,11 +20,17 @@ const validationSchema = Yup.object().shape({
 const useSubmitQuestion = ({ afterSubmission }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [tags, setTags] = useState([]);
+
+  const handleTags = (newTag) => {
+    setTags([...tags, newTag]);
+  };
 
   const formik = useFormik({
     initialValues: {
       title: "",
       description: "",
+      tags: "",
     },
 
     onSubmit: async (values) => {
@@ -40,7 +46,7 @@ const useSubmitQuestion = ({ afterSubmission }) => {
             quotes: [],
           },
           views: 0,
-          tags: [],
+          tags: tags,
           comments: [],
         });
         toast("SUCCESS");
@@ -63,6 +69,8 @@ const useSubmitQuestion = ({ afterSubmission }) => {
     errors: formik.errors,
     onChange: formik.handleChange,
     onSubmit: formik.handleSubmit,
+    tags,
+    handleTags,
   };
 };
 
